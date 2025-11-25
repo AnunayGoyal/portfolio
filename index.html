@@ -9,45 +9,107 @@
 </head>
 <body>
 
-<nav class="navbar">
-    <div class="logo">&lt;anunay<span>@goyal</span> /&gt;</div>
-    <ul class="nav-links">
-        <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="projects.html">Projects</a></li>
-        <li><a href="education.html">Education</a></li>
-        <li><a href="https://www.cyvanta.in" target="_blank">Blog <i class="fas fa-external-link-alt"></i></a></li>
-        <li><a href="contact.html" class="nav-btn">Contact</a></li>
-    </ul>
-    <div class="burger"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div>
-</nav>
+    <nav class="navbar">
+        <div class="logo">&lt;anunay<span>@goyal</span> /&gt;</div>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="education.html">Education</a></li>
+            <li><a href="https://www.cyvanta.in" target="_blank">Blog <i class="fas fa-external-link-alt"></i></a></li>
+            <li><a href="contact.html" class="nav-btn">Contact</a></li>
+        </ul>
+        <div class="burger">
+            <div class="line1"></div><div class="line2"></div><div class="line3"></div>
+        </div>
+    </nav>
 
+    <!-- 1. HERO SECTION (Updated with Typewriter) -->
     <section class="section">
         <div class="container text-center">
             <img src="assets/images/profile.jpg" alt="Anunay Goyal" class="profile-img">
             
-            <h3>Cyber Security Enthusiast</h3>
+            <!-- Typewriter Wrapper -->
+            <h3>I am a <span class="typewriter"></span><span class="cursor">&nbsp;</span></h3>
+            
             <h1>Hi, I'm Anunay Goyal.</h1>
             <p style="max-width: 600px; margin: 0 auto; color: var(--text-muted);">
                 Cybersecurity student seeking opportunities; proficient in GRC, Pentesting, and SOC Analysis, with strong coding skills in Python, Java, and C++.
             </p>
             <div style="margin-top: 2rem;">
                 <a href="contact.html" class="btn">Get in Touch</a>
-                <a href="projects.html" class="btn">View Projects</a>
+                <a href="projects.html" class="btn" style="background:transparent; border:1px solid var(--text-muted); color:var(--text-muted);">View Work</a>
             </div>
         </div>
     </section>
 
-    <section class="section" style="background: var(--bg-card);">
+    <!-- 2. TECH STACK MARQUEE (New) -->
+    <div class="marquee-section">
+        <div class="marquee-content">
+            <!-- Duplicate the list twice for seamless scrolling -->
+            <span class="tech-item"><i class="fab fa-python"></i> Python</span>
+            <span class="tech-item"><i class="fab fa-linux"></i> Linux</span>
+            <span class="tech-item"><i class="fas fa-network-wired"></i> Wireshark</span>
+            <span class="tech-item"><i class="fas fa-bug"></i> Burp Suite</span>
+            <span class="tech-item"><i class="fab fa-java"></i> Java</span>
+            <span class="tech-item"><i class="fas fa-shield-alt"></i> Metasploit</span>
+            <span class="tech-item"><i class="fas fa-database"></i> SQL Injection</span>
+            <span class="tech-item"><i class="fas fa-user-secret"></i> Nmap</span>
+            
+            <!-- DUPLICATE SET (Required for infinite loop) -->
+            <span class="tech-item"><i class="fab fa-python"></i> Python</span>
+            <span class="tech-item"><i class="fab fa-linux"></i> Linux</span>
+            <span class="tech-item"><i class="fas fa-network-wired"></i> Wireshark</span>
+            <span class="tech-item"><i class="fas fa-bug"></i> Burp Suite</span>
+            <span class="tech-item"><i class="fab fa-java"></i> Java</span>
+            <span class="tech-item"><i class="fas fa-shield-alt"></i> Metasploit</span>
+            <span class="tech-item"><i class="fas fa-database"></i> SQL Injection</span>
+            <span class="tech-item"><i class="fas fa-user-secret"></i> Nmap</span>
+        </div>
+    </div>
+
+    <!-- 3. EXPERTISE CARDS (New) -->
+    <section class="section">
         <div class="container">
-            <h2>About Me</h2>
-            <p style="margin-bottom: 1rem;">
-                A dedicated Cybersecurity undergraduate driven by a passion for Network Security. My technical foundation is broad, covering GRC, Pentesting, and SOC Analysis, and is reinforced by strong programming skills in Python, Java, C++, and C and a web development background.
-            </p>
-            <p>
-                I apply this knowledge through projects like an AI/ML DDoS Prevention System and a Graphical Password Authenticator. I am actively looking for roles where I can contribute my analytical skills, multilingual background (Hindi, English, learning Japanese), and commitment to building secure systems.
-            </p>
+            <h2 class="text-center" style="border:none; margin-bottom:3rem;">My Expertise</h2>
+            <div class="grid">
+                <!-- Card 1 -->
+                <div class="card expertise-card">
+                    <i class="fas fa-bug expertise-icon"></i>
+                    <h3>Offensive Security</h3>
+                    <p style="font-size:0.9rem; color:var(--text-muted);">
+                        Vulnerability Assessment, Penetration Testing, CTF Competitions, and Web App Security.
+                    </p>
+                </div>
+                <!-- Card 2 -->
+                <div class="card expertise-card">
+                    <i class="fas fa-shield-halved expertise-icon"></i>
+                    <h3>Defensive Ops</h3>
+                    <p style="font-size:0.9rem; color:var(--text-muted);">
+                        SOC Analysis, Log Monitoring, Threat Hunting, and Incident Response.
+                    </p>
+                </div>
+                <!-- Card 3 -->
+                <div class="card expertise-card">
+                    <i class="fas fa-file-contract expertise-icon"></i>
+                    <h3>GRC & Compliance</h3>
+                    <p style="font-size:0.9rem; color:var(--text-muted);">
+                        Risk Management, Security Auditing, Policy Creation, and Compliance Frameworks.
+                    </p>
+                </div>
+            </div>
         </div>
     </section>
+
+    <!-- 4. FOOTER (New) -->
+    <footer>
+        <p class="footer-text">
+            &copy; 2025 Anunay Goyal. Built with <span>Code & Caffeine</span>.
+        </p>
+        <div class="social-icons" style="justify-content:center; margin-top:1rem;">
+            <a href="https://github.com/AnunayGoyal"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/anunay-goyal"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </footer>
 
     <script src="assets/js/main.js"></script>
 </body>
