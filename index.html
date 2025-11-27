@@ -6,8 +6,11 @@
     <title>Anunay Goyal | Cyber Security</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 </head>
 <body>
+
+    <div id="particles-js"></div>
 
     <nav class="navbar">
         <div class="logo">&lt;anunay<span>@goyal</span> /&gt;</div>
@@ -18,19 +21,13 @@
             <li><a href="https://www.cyvanta.in" target="_blank">Blog <i class="fas fa-external-link-alt"></i></a></li>
             <li><a href="contact.html" class="nav-btn">Contact</a></li>
         </ul>
-        <div class="burger">
-            <div class="line1"></div><div class="line2"></div><div class="line3"></div>
-        </div>
+        <div class="burger"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div>
     </nav>
 
-    <!-- 1. HERO SECTION (Updated with Typewriter) -->
     <section class="section">
         <div class="container text-center">
             <img src="assets/images/profile.jpg" alt="Anunay Goyal" class="profile-img">
-            
-            <!-- Typewriter Wrapper -->
             <h3>I am a <span class="typewriter"></span><span class="cursor">&nbsp;</span></h3>
-            
             <h1>Hi, I'm Anunay Goyal.</h1>
             <p style="max-width: 600px; margin: 0 auto; color: var(--text-muted);">
                 Cybersecurity student seeking opportunities; proficient in GRC, Pentesting, and SOC Analysis, with strong coding skills in Python, Java, and C++.
@@ -42,10 +39,8 @@
         </div>
     </section>
 
-    <!-- 2. TECH STACK MARQUEE (New) -->
     <div class="marquee-section">
         <div class="marquee-content">
-            <!-- Duplicate the list twice for seamless scrolling -->
             <span class="tech-item"><i class="fab fa-python"></i> Python</span>
             <span class="tech-item"><i class="fab fa-linux"></i> Linux</span>
             <span class="tech-item"><i class="fas fa-network-wired"></i> Wireshark</span>
@@ -55,7 +50,7 @@
             <span class="tech-item"><i class="fas fa-database"></i> SQL Injection</span>
             <span class="tech-item"><i class="fas fa-user-secret"></i> Nmap</span>
             
-            <!-- DUPLICATE SET (Required for infinite loop) -->
+            <!-- DUPLICATE SET FOR INFINITE SCROLL -->
             <span class="tech-item"><i class="fab fa-python"></i> Python</span>
             <span class="tech-item"><i class="fab fa-linux"></i> Linux</span>
             <span class="tech-item"><i class="fas fa-network-wired"></i> Wireshark</span>
@@ -67,44 +62,38 @@
         </div>
     </div>
 
-    <!-- 3. EXPERTISE CARDS (New) -->
     <section class="section">
         <div class="container">
             <h2 class="text-center" style="border:none; margin-bottom:3rem;">My Expertise</h2>
             <div class="grid">
-                <!-- Card 1 -->
                 <div class="card expertise-card">
                     <i class="fas fa-bug expertise-icon"></i>
                     <h3>Offensive Security</h3>
-                    <p style="font-size:0.9rem; color:var(--text-muted);">
-                        Vulnerability Assessment, Penetration Testing, CTF Competitions, and Web App Security.
-                    </p>
+                    <p style="font-size:0.9rem; color:var(--text-muted);">Vulnerability Assessment, Penetration Testing, CTF Competitions, and Web App Security.</p>
                 </div>
-                <!-- Card 2 -->
                 <div class="card expertise-card">
                     <i class="fas fa-shield-halved expertise-icon"></i>
                     <h3>Defensive Ops</h3>
-                    <p style="font-size:0.9rem; color:var(--text-muted);">
-                        SOC Analysis, Log Monitoring, Threat Hunting, and Incident Response.
-                    </p>
+                    <p style="font-size:0.9rem; color:var(--text-muted);">SOC Analysis, Log Monitoring, Threat Hunting, and Incident Response.</p>
                 </div>
-                <!-- Card 3 -->
                 <div class="card expertise-card">
                     <i class="fas fa-file-contract expertise-icon"></i>
                     <h3>GRC & Compliance</h3>
-                    <p style="font-size:0.9rem; color:var(--text-muted);">
-                        Risk Management, Security Auditing, Policy Creation, and Compliance Frameworks.
-                    </p>
+                    <p style="font-size:0.9rem; color:var(--text-muted);">Risk Management, Security Auditing, Policy Creation, and Compliance Frameworks.</p>
                 </div>
             </div>
         </div>
     </section>
+    
+    <section class="section" style="background: var(--bg-card);">
+        <div class="container">
+            <h2>About Me</h2>
+            <p style="margin-bottom: 1rem;">A dedicated Cybersecurity undergraduate driven by a passion for Network Security. My technical foundation is broad, covering GRC, Pentesting, and SOC Analysis, and is reinforced by strong programming skills in Python, Java, C++, and C.</p>
+        </div>
+    </section>
 
-    <!-- 4. FOOTER (New) -->
     <footer>
-        <p class="footer-text">
-            &copy; 2025 Anunay Goyal. Built with <span>Code & Caffeine</span>.
-        </p>
+        <p class="footer-text">&copy; 2025 Anunay Goyal. Built with <span>Code & Caffeine</span>.</p>
         <div class="social-icons" style="justify-content:center; margin-top:1rem;">
             <a href="https://github.com/AnunayGoyal"><i class="fab fa-github"></i></a>
             <a href="https://linkedin.com/in/anunay-goyal"><i class="fab fa-linkedin"></i></a>

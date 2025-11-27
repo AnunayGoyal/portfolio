@@ -1,17 +1,18 @@
-// Mobile Menu Toggle
+/* =========================================
+   1. MOBILE MENU TOGGLE
+   ========================================= */
 const burger = document.querySelector('.burger');
 const nav = document.querySelector('.nav-links');
 const navLinks = document.querySelectorAll('.nav-links li');
 
-burger.addEventListener('click', () => {
-    // Toggle Nav
-    nav.classList.toggle('active');
-    
-    // Animate Burger
-    burger.classList.toggle('toggle');
-});
+if (burger) {
+    burger.addEventListener('click', () => {
+        nav.classList.toggle('active');
+        burger.classList.toggle('toggle');
+    });
+}
 
-// Close menu when a link is clicked (UX improvement)
+// Close menu when link is clicked
 navLinks.forEach(link => {
     link.addEventListener('click', () => {
         nav.classList.remove('active');
@@ -20,17 +21,16 @@ navLinks.forEach(link => {
 });
 
 /* =========================================
-   TYPEWRITER EFFECT LOGIC
+   2. TYPEWRITER EFFECT
    ========================================= */
 const typeTextSpan = document.querySelector(".typewriter");
 const cursorSpan = document.querySelector(".cursor");
 
-// Only run if the element exists (prevents errors on other pages)
 if (typeTextSpan) {
-    const textArray = ["Penetration Tester", "SOC Analyst", "Governance, Risk  & Compliance Implementor", "Threat Hunter", "Cybersecurity Enthusiast", "Web Developer"];
+    const textArray = ["Penetration Tester", "SOC Analyst", "GRC Specialist", "Threat Hunter"];
     const typingDelay = 100;
     const erasingDelay = 50;
-    const newTextDelay = 2000; // Delay between current and next text
+    const newTextDelay = 2000;
     let textArrayIndex = 0;
     let charIndex = 0;
 
@@ -56,7 +56,49 @@ if (typeTextSpan) {
         }
     }
 
-    document.addEventListener("DOMContentLoaded", function() { // On DOM Load initiate the effect
+    document.addEventListener("DOMContentLoaded", function() {
         if(textArray.length) setTimeout(type, newTextDelay + 250);
     });
 }
+
+/* =========================================
+   3. PARTICLE NETWORK CONFIG
+   ========================================= */
+if (document.getElementById('particles-js')) {
+    particlesJS("particles-js", {
+        "particles": {
+            "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+            "color": { "value": "#00ff41" },
+            "shape": { "type": "circle" },
+            "opacity": { "value": 0.5, "random": false },
+            "size": { "value": 3, "random": true },
+            "line_linked": {
+                "enable": true,
+                "distance": 150,
+                "color": "#00ff41",
+                "opacity": 0.2,
+                "width": 1
+            },
+            "move": { "enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "out_mode": "out" }
+        },
+        "interactivity": {
+            "detect_on": "canvas",
+            "events": {
+                "onhover": { "enable": true, "mode": "grab" },
+                "onclick": { "enable": true, "mode": "push" }
+            },
+            "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 1 } } }
+        },
+        "retina_detect": true
+    });
+}
+
+/* =========================================
+   4. CTF EASTER EGG (Console)
+   ========================================= */
+setTimeout(() => {
+    console.log("%cSTOP! Restricted Area.", "color: red; font-size: 18px; font-weight: bold;");
+    console.log("Just kidding. But since you're poking around, here's a flag for you:");
+    console.log("%cflag{y0u_h4v3_3nt3r3d_th3_m4tr1x}", "color: #00ff41; font-family: 'Courier New', monospace; font-size: 16px; background: #0d1117; padding: 4px 8px; border-radius: 4px; border: 1px solid #00ff41;");
+    console.log("Keep hacking! 🕵️‍♂️");
+}, 1000);

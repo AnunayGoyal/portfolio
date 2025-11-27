@@ -6,7 +6,7 @@
     --bg-card: #161b22;
     --nav-bg: rgba(13, 17, 23, 0.95);
     
-    --text-main: #e6edf3; /* Brighter White for bolder look */
+    --text-main: #e6edf3;
     --text-muted: #8b949e;
     
     --accent: #00ff41;    /* Hacker Neon Green */
@@ -19,12 +19,7 @@
 /* =========================================
    2. GLOBAL RESET
    ========================================= */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    transition: all 0.3s ease;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; transition: all 0.3s ease; }
 
 body {
     background-color: var(--bg-body);
@@ -32,16 +27,25 @@ body {
     font-family: var(--font-stack);
     line-height: 1.6;
     padding-top: 80px; /* Space for fixed nav */
-    
-    /* UPDATED: Bolder text weight */
     font-weight: 600; 
 }
 
 a { text-decoration: none; color: inherit; }
 ul { list-style: none; }
 
+/* Particle Background */
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background-color: var(--bg-body);
+}
+
 /* =========================================
-   3. NAVIGATION (Updated: Bigger, Bolder, Buttonized)
+   3. NAVIGATION
    ========================================= */
 .navbar {
     position: fixed;
@@ -57,63 +61,60 @@ ul { list-style: none; }
     z-index: 1000;
 }
 
-.logo { 
-    font-weight: 800; 
-    font-size: 1.5rem; /* Slightly larger logo */
-    letter-spacing: -1px; 
-}
+.logo { font-weight: 800; font-size: 1.5rem; letter-spacing: -1px; }
 .logo span { color: var(--accent); }
 
-.nav-links { display: flex; gap: 2.5rem; align-items: center; } /* Increased gap */
+.nav-links { display: flex; gap: 2.5rem; align-items: center; }
 
 .nav-links a { 
-    font-size: 1.1rem; /* BIGGER Text */
+    font-size: 1.1rem; 
     color: var(--text-main); 
     position: relative; 
-    font-weight: 700;  /* BOLDER Text */
+    font-weight: 700;
     letter-spacing: 0.5px;
 }
 
 .nav-links a:hover { color: var(--accent); }
+.nav-links a.active { color: var(--accent); }
 
-/* The Active State (The Highlight) */
-.nav-links a.active { 
-    color: var(--accent); 
-}
-
-
-
-/* --- OPTION 4: THE CONTACT BUTTON --- */
-/* This class (.nav-btn) turns the link into a solid button */
+/* Contact Button Style */
 .nav-links .nav-btn {
     background-color: var(--accent);
-    color: #000 !important; /* Black text for contrast */
+    color: #000 !important;
     padding: 10px 24px;
     border-radius: 5px;
     font-weight: 800;
     box-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
     border: 1px solid var(--accent);
 }
-
 .nav-links .nav-btn:hover {
-    background-color: transparent; /* Hollow on hover */
+    background-color: transparent;
     color: var(--accent) !important;
     box-shadow: 0 0 20px rgba(0, 255, 65, 0.6);
 }
 
-/* Disable the underline animation for the button */
-.nav-links .nav-btn::after { display: none !important; }
+/* Fluid Underline Animation (For non-buttons) */
+.nav-links a:not(.nav-btn)::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--accent);
+    transform: scaleX(0); 
+    transform-origin: bottom right;
+    transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 0 10px var(--accent);
+}
+.nav-links a:not(.nav-btn)::after { transform: scaleX(0); }
+.nav-links a:not(.nav-btn):hover::after { transform: scaleX(1); transform-origin: bottom left; }
+.nav-links a.active:not(.nav-btn)::after { transform: scaleX(1); transform-origin: bottom left; }
+
 
 /* Mobile Menu Burger */
 .burger { display: none; cursor: pointer; }
 .burger div { width: 25px; height: 3px; background: var(--accent); margin: 5px; transition: 0.3s; }
-
-@media (max-width: 768px) {
-    .nav-links {
-        gap: 2rem;
-        /* Mobile menu styles remain the same... */
-    }
-}
 
 /* =========================================
    4. LAYOUT COMPONENTS
@@ -125,25 +126,21 @@ ul { list-style: none; }
 h1 { font-size: 3rem; margin-bottom: 1rem; color: #fff; font-weight: 800; }
 h2 { font-size: 2.2rem; margin-bottom: 2rem; border-bottom: 1px solid var(--border); display: inline-block; padding-bottom: 10px; color: #fff; font-weight: 700; }
 h3 { font-size: 1.5rem; color: var(--accent); margin-bottom: 0.5rem; font-weight: 700; }
-p { font-size: 1.05rem; } /* Slightly larger body text */
+p { font-size: 1.05rem; }
 
-/* Buttons */
-.btn {
-    display: inline-block;
-    padding: 12px 28px;
-    background: transparent;
-    color: var(--accent);
-    border: 1px solid var(--accent);
-    border-radius: 4px;
-    font-weight: 700;
-    margin-top: 1rem;
-    font-size: 1rem;
+/* Profile Image */
+.profile-img {
+    width: 280px; 
+    height: 280px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 2rem;
+    border: 5px solid var(--accent);
+    box-shadow: 0 0 25px rgba(0, 255, 65, 0.4);
 }
-.btn:hover { background: rgba(0, 255, 65, 0.1); box-shadow: 0 0 15px rgba(0, 255, 65, 0.4); }
 
-/* Grid System */
+/* Cards */
 .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
-
 .card {
     background: var(--bg-card);
     padding: 2rem;
@@ -152,27 +149,6 @@ p { font-size: 1.05rem; } /* Slightly larger body text */
     box-shadow: var(--shadow);
 }
 .card:hover { transform: translateY(-5px); border-color: var(--accent); }
-
-/* Profile Image */
-.profile-img {
-    width: 280px;   /* Increased from 220px */
-    height: 280px;  /* Keep height same as width for a perfect circle */
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 2rem;
-    
-    /* Stronger Border & Glow for the larger size */
-    border: 5px solid var(--accent); 
-    box-shadow: 0 0 25px rgba(0, 255, 65, 0.4); 
-}
-
-/* Mobile Adjustment: Prevent it from being too huge on phones */
-@media (max-width: 768px) {
-    .profile-img {
-        width: 200px;
-        height: 200px;
-    }
-}
 
 /* Forms */
 input, textarea {
@@ -189,52 +165,88 @@ input, textarea {
 }
 input:focus, textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 5px var(--accent); }
 
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 12px 28px;
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    font-weight: 700;
+    margin-top: 1rem;
+    font-size: 1rem;
+}
+.btn:hover { background: rgba(0, 255, 65, 0.1); box-shadow: 0 0 15px rgba(0, 255, 65, 0.4); }
+
 /* =========================================
-   5. SOCIAL ICONS & SVG SETUP
+   5. HOME PAGE ELEMENTS (Marquee, Typewriter, Cards)
    ========================================= */
-.social-icons { 
-    margin-top: 1.5rem; 
-    display: flex; 
-    gap: 20px; 
-    flex-wrap: wrap; 
-}
+/* Typewriter */
+.typewriter { color: var(--accent); font-weight: 700; }
+.cursor { display: inline-block; width: 3px; background-color: var(--text-main); animation: blink 1s infinite; }
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-.social-icons a { 
-    font-size: 1.8rem; /* Size for FontAwesome icons */
-    color: var(--text-muted); 
-    transition: 0.3s;
-    display: flex;       /* Aligns SVG and Icons vertically center */
-    align-items: center;
-    justify-content: center;
-}
+/* Expertise Cards */
+.expertise-icon { font-size: 3rem; color: var(--accent); margin-bottom: 1rem; }
+.expertise-card { text-align: center; transition: transform 0.3s ease, border-color 0.3s ease; }
+.expertise-card:hover { transform: translateY(-10px); border-color: var(--accent); }
 
-.social-icons a:hover { 
-    color: var(--accent); 
-    transform: scale(1.2); 
-    text-shadow: 0 0 10px var(--accent); 
+/* Marquee */
+.marquee-section {
+    background: var(--bg-card);
+    padding: 2rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
 }
-
-/* CUSTOM SVG CLASS (For TryHackMe) */
-.custom-svg-icon {
-    width: 1.8rem;   /* Matches font-size of other icons */
-    height: 1.8rem;
-    transition: all 0.3s ease;
-    
-    /* TRICK: Since SVG might be black or colored, this filter
-       makes it look grey (muted) to match the inactive icons.
-    */
-    filter: invert(60%) sepia(10%) saturate(500%) hue-rotate(180deg) brightness(90%) contrast(85%);
-}
-
-/* On hover, make the SVG bright green (using CSS filter magic) */
-.social-icons a:hover .custom-svg-icon {
-    transform: scale(1.1);
-    /* This filter approximates neon green #00ff41 */
-    filter: invert(68%) sepia(61%) saturate(464%) hue-rotate(85deg) brightness(119%) contrast(119%) drop-shadow(0 0 5px rgba(0, 255, 65, 0.8));
-}
+.marquee-content { display: inline-block; animation: scroll 20s linear infinite; }
+.tech-item { display: inline-block; padding: 0 2rem; font-size: 1.2rem; font-weight: bold; color: var(--text-muted); }
+.tech-item i { color: var(--accent); margin-right: 8px; }
+@keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
 /* =========================================
-   6. MOBILE RESPONSIVENESS
+   6. PROJECT TECH BADGES
+   ========================================= */
+.tech-badges { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; margin-bottom: 20px; }
+.badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 50px;
+    background: var(--bg-body);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    transition: all 0.3s ease;
+}
+.badge:hover { transform: translateY(-2px); color: #fff; }
+.badge.python { border-color: #3776ab; color: #3776ab; } .badge.python:hover { background: #3776ab; color: white; }
+.badge.linux { border-color: #fcc624; color: #fcc624; } .badge.linux:hover { background: #fcc624; color: black; }
+.badge.java { border-color: #f89820; color: #f89820; } .badge.java:hover { background: #f89820; color: white; }
+.badge.network { border-color: #00ff41; color: #00ff41; } .badge.network:hover { background: #00ff41; color: black; }
+.badge.security { border-color: #ff0055; color: #ff0055; } .badge.security:hover { background: #ff0055; color: white; }
+
+/* =========================================
+   7. SOCIAL ICONS & FOOTER
+   ========================================= */
+.social-icons { margin-top: 1.5rem; display: flex; gap: 20px; flex-wrap: wrap; }
+.social-icons a { font-size: 1.8rem; color: var(--text-muted); transition: 0.3s; display: flex; align-items: center; justify-content: center; }
+.social-icons a:hover { color: var(--accent); transform: scale(1.2); text-shadow: 0 0 10px var(--accent); }
+
+footer {
+    background: var(--nav-bg);
+    border-top: 1px solid var(--border);
+    padding: 2rem 5%;
+    text-align: center;
+    margin-top: auto;
+}
+.footer-text { color: var(--text-muted); font-size: 0.9rem; }
+.footer-text span { color: var(--accent); }
+
+/* =========================================
+   8. MOBILE RESPONSIVENESS
    ========================================= */
 @media (max-width: 768px) {
     .nav-links {
@@ -245,138 +257,5 @@ input:focus, textarea:focus { outline: none; border-color: var(--accent); box-sh
     .nav-links.active { transform: translateX(0%); }
     .burger { display: block; }
     h1 { font-size: 2.2rem; }
+    .profile-img { width: 200px; height: 200px; }
 }
-
-/* =========================================
-   7. FLUID UNDERLINE ANIMATION (GPU Optimized)
-   ========================================= */
-
-/* 1. Target Navbar Links specifically */
-.nav-links a {
-    position: relative;
-    display: inline-block; /* Ensures underline matches text width exactly */
-    text-decoration: none;
-    padding-bottom: 2px;   /* Slight gap for the text */
-}
-
-/* 2. The Line (Hidden State) */
-.nav-links a::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 2px;         /* Thickness of the line */
-    bottom: 0;
-    left: 0;
-    background-color: var(--accent); /* Neon Green */
-    
-    /* ANIMATION MAGIC: ScaleX is smoother than Width */
-    transform: scaleX(0); 
-    transform-origin: bottom right; /* Anchor to right when leaving */
-    transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Fluid easing */
-    
-    /* Glow effect for Cyber look */
-    box-shadow: 0 0 10px var(--accent);
-}
-
-/* 3. The Hover State */
-.nav-links a:hover::after {
-    transform: scaleX(1);           /* Expand to full width */
-    transform-origin: bottom left;  /* Anchor to left when entering */
-}
-
-/* 4. Active State (Keep the line visible for the current page) */
-.nav-links a.active::after {
-    transform: scaleX(1);
-    transform-origin: bottom left;
-}
-
-/* 5. Mobile Adjustments (Responsive) */
-@media (max-width: 768px) {
-    .nav-links a {
-        margin: 10px 0; /* Give links space on mobile */
-        font-size: 1.2rem; /* Make text bigger on mobile */
-    }
-}
-
-/* =========================================
-   9. NEW HOME PAGE UPGRADES
-   ========================================= */
-
-/* A. TYPEWRITER EFFECT */
-.typewriter {
-    color: var(--accent);
-    font-weight: 700;
-}
-.cursor {
-    display: inline-block;
-    width: 3px;
-    background-color: var(--text-main);
-    animation: blink 1s infinite;
-}
-@keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-}
-
-/* B. EXPERTISE CARDS */
-.expertise-icon {
-    font-size: 3rem;
-    color: var(--accent);
-    margin-bottom: 1rem;
-}
-.expertise-card {
-    text-align: center;
-    transition: transform 0.3s ease, border-color 0.3s ease;
-}
-.expertise-card:hover {
-    transform: translateY(-10px);
-    border-color: var(--accent);
-}
-
-/* C. TECH STACK MARQUEE (Infinite Scroll) */
-.marquee-section {
-    background: var(--bg-card);
-    padding: 2rem 0;
-    overflow: hidden; /* Hide scrollbars */
-    white-space: nowrap;
-    position: relative;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-}
-
-.marquee-content {
-    display: inline-block;
-    animation: scroll 20s linear infinite;
-}
-
-.tech-item {
-    display: inline-block;
-    padding: 0 2rem;
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: var(--text-muted);
-}
-.tech-item i {
-    color: var(--accent);
-    margin-right: 8px;
-}
-
-@keyframes scroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-}
-
-/* D. FOOTER */
-footer {
-    background: var(--nav-bg);
-    border-top: 1px solid var(--border);
-    padding: 2rem 5%;
-    text-align: center;
-    margin-top: auto; /* Pushes footer to bottom */
-}
-.footer-text {
-    color: var(--text-muted);
-    font-size: 0.9rem;
-}
-.footer-text span { color: var(--accent); }
-
