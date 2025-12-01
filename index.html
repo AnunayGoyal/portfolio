@@ -4,10 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Anunay Goyal | Cyber Security</title>
+    
+    <!-- 1. SEO & META TAGS -->
+    <meta name="description" content="Cyber Security Portfolio of Anunay Goyal. Showcasing projects in Penetration Testing, SOC Analysis, and GRC.">
+    <meta name="keywords" content="Cyber Security, Penetration Tester, SOC Analyst, GRC, Portfolio, Anunay Goyal, Network Security, Ethical Hacking">
+    <meta name="author" content="Anunay Goyal">
+
+    <!-- 2. OPEN GRAPH / LINKEDIN PREVIEW -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://anunaygoyal.github.io/portfolio/">
+    <meta property="og:title" content="Anunay Goyal | Cyber Security Analyst">
+    <meta property="og:description" content="Explore my projects, research, and certifications in Offensive & Defensive Security.">
+    <meta property="og:image" content="https://anunaygoyal.github.io/portfolio/assets/images/profile.jpg">
+
+    <!-- 3. TWITTER CARD PREVIEW -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://anunaygoyal.github.io/portfolio/">
+    <meta property="twitter:title" content="Anunay Goyal | Cyber Security Analyst">
+    <meta property="twitter:description" content="Explore my projects, research, and certifications in Offensive & Defensive Security.">
+    <meta property="twitter:image" content="https://anunaygoyal.github.io/portfolio/assets/images/profile.jpg">
+
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/images/website-icon.png">
+    
+    <!-- Styles -->
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    
+    <!-- Scripts (Moved here with defer for better performance) -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
 </head>
 <body>
 
@@ -33,6 +59,7 @@
             <p style="max-width: 600px; margin: 0 auto; color: var(--text-muted);">
                 Cybersecurity student seeking opportunities; proficient in GRC, Pentesting, and SOC Analysis, with strong coding skills in Python, Java, and C++.
             </p>
+            
             <div style="margin-top: 2rem;">
                 <a href="contact.html" class="btn">Get in Touch</a>
                 <a href="projects.html" class="btn" style="background:transparent; border:1px solid var(--text-muted); color:var(--text-muted);">View Work</a>
@@ -89,7 +116,25 @@
     <section class="section" style="background: var(--bg-card);">
         <div class="container">
             <h2>About Me</h2>
-            <p style="margin-bottom: 1rem;">A dedicated Cybersecurity undergraduate driven by a passion for Network Security. My technical foundation is broad, covering GRC, Pentesting, and SOC Analysis, and is reinforced by strong programming skills in Python, Java, C++, and C.</p>
+            <div style="display: flex; justify-content: center; flex-wrap: wrap; align-items: center; gap: 40px;">
+                <!-- KEY FIX: Added explicit font-family style to force the correct font -->
+                <div style="flex: 1; min-width: 300px; font-family: 'Courier New', Courier, monospace;">
+                    <p style="margin-bottom: 1rem; line-height: 1.8; color: var(--text-main);">
+                        I am Anunay Goyal, a B.Tech Computer Science student specializing in <strong>Cyber Security and Digital Forensics</strong> at Vellore Institute of Technology, Bhopal. I have a strong interest in cybersecurity with a focus on <strong>network security</strong> and <strong>Governance, Risk, and Compliance (GRC)</strong>.
+                    </p>
+                    <p style="margin-bottom: 1rem; line-height: 1.8; color: var(--text-main);">
+                        I have worked on projects including a <strong>Graphical Password Authentication System</strong> and a <strong>Machine Learning–based DDoS Attack Detection System</strong>, which helped me build a solid foundation in <strong>secure authentication</strong> and <strong>threat detection</strong>.
+                    </p>
+                    <p style="line-height: 1.8; color: var(--text-main);">
+                        I am actively seeking <strong>internship</strong> and <strong>entry-level full-time opportunities</strong> where I can apply my technical knowledge, gain real-world exposure, and grow as a cybersecurity professional. I am a motivated learner with a strong <strong>analytical mindset</strong>, eager to contribute to building <strong>secure and resilient digital systems</strong>.
+                    </p>
+                </div>
+                
+                <!-- RADAR CHART CONTAINER -->
+                <div style="flex: 1; min-width: 300px; max-width: 400px; height: 350px; position: relative;">
+                    <canvas id="skillsChart"></canvas>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -101,6 +146,8 @@
         </div>
     </footer>
 
-    <script src="assets/js/main.js"></script>
+    <!-- Local Scripts -->
+    <script src="assets/js/main.js" defer></script>
+    <script src="assets/js/chart.js" defer></script>
 </body>
 </html>
