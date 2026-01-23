@@ -72,47 +72,85 @@ if (typeTextSpan) {
 /* =========================================
    3. PARTICLE NETWORK CONFIG
    ========================================= */
-if (document.getElementById("particles-js")) {
-  tsParticles.load("particles-js", {
-    particles: {
-      number: { value: 80, density: { enable: true, area: 800 } },
-      color: { value: "#00ff41" },
-      shape: { type: "circle" },
-      opacity: { value: 0.5 },
-      size: { value: 3, random: true },
-      links: {
-        enable: true,
-        distance: 150,
-        color: "#00ff41",
-        opacity: 0.2,
-        width: 1,
-      },
-      move: {
-        enable: true,
-        speed: 2,
-        direction: "none",
-        random: false,
-        straight: false,
-        outModes: "out",
-      },
-    },
-    interactivity: {
-      detectsOn: "canvas",
-      events: {
-        onHover: { enable: true, mode: "grab" },
-        onClick: { enable: true, mode: "push" },
-        resize: true,
-      },
-      modes: {
-        grab: {
-          distance: 140,
-          links: { opacity: 1 },
+document.addEventListener("DOMContentLoaded", async () => {
+  if (window.tsParticles) {
+    try {
+      await tsParticles.load("tsparticles", {
+        fullScreen: { enable: true, zIndex: -1 },
+        background: {
+          color: "#0d1117",
         },
-      },
-    },
-    detectRetina: true,
-  });
-}
+        particles: {
+          number: {
+            value: 60,
+            density: {
+              enable: true,
+              width: 800,
+              height: 800,
+            },
+          },
+          color: {
+            value: "#00ff41",
+          },
+          shape: {
+            type: "circle",
+          },
+          opacity: {
+            value: 0.2,
+          },
+          size: {
+            value: { min: 1, max: 3 },
+          },
+          links: {
+            enable: true,
+            distance: 150,
+            color: "#00ff41",
+            opacity: 0.2,
+            width: 1,
+          },
+          move: {
+            enable: true,
+            speed: 0.8,
+            direction: "none",
+            random: false,
+            straight: false,
+            outModes: "out",
+          },
+        },
+        interactivity: {
+          detectsOn: "window",
+          events: {
+            onHover: {
+              enable: true,
+              mode: "grab",
+            },
+            onClick: {
+              enable: true,
+              mode: "push",
+            },
+            resize: true,
+          },
+          modes: {
+            grab: {
+              distance: 250,
+              links: {
+                opacity: 1,
+                color: "#00ff41",
+              },
+            },
+            push: {
+              quantity: 4,
+            },
+          },
+        },
+        detectRetina: true,
+      });
+      console.log("Particles loaded successfully");
+    } catch (error) {
+      console.error("Failed to load particles:", error);
+    }
+  }
+});
 
 /* =========================================
    4. CTF EASTER EGG (Console)
