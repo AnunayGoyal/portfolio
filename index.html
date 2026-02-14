@@ -138,21 +138,105 @@
 
     <section class="section">
         <div class="container text-center">
-            <h2>GitHub Contributions</h2>
-            <div style="max-width: 900px; margin: 0 auto; padding: 20px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px;">
-                <a href="https://github.com/AnunayGoyal" target="_blank">
-                    <!-- INVERSION TRICK: 
-                         1. Request chart in Magenta (#ff00be)
-                         2. Invert(1) turns Magenta -> Neon Green (#00ff41) 
-                         3. Invert(1) turns Black Text -> White Text (Visible on dark) 
-                    -->
-                    <img src="https://ghchart.rshah.org/ff00be/AnunayGoyal" 
-                         alt="Anunay's GitHub Contributions" 
-                         style="width: 100%; height: auto; filter: invert(1);">
-                </a>
+    <section class="section">
+        <div class="container">
+            <h2 class="text-center">GitHub Contributions</h2>
+            
+            <div class="github-card">
+                <div class="calendar-wrapper" style="display: flex; gap: 20px; align-items: flex-start;">
+                    <!-- 2. Main Graph -->
+                    <div class="calendar" style="flex: 1; overflow-x: auto;">
+                       Loading...
+                    </div>
+
+                    <!-- 3. Year Sidebar -->
+                    <div class="year-list" style="display: flex; flex-direction: column; gap: 8px; min-width: 80px;">
+                        <button class="year-btn active" onclick="loadGraph(2026, this)">2026</button>
+                        <button class="year-btn" onclick="loadGraph(2025, this)">2025</button>
+                        <button class="year-btn" onclick="loadGraph(2024, this)">2024</button>
+                        <button class="year-btn" onclick="loadGraph(2023, this)">2023</button>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
+
+    <!-- GitHub Calendar Script -->
+    <script>
+        async function loadGraph(year, btn) {
+            // 1. Activate Button
+            if(btn) {
+                document.querySelectorAll('.year-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            }
+
+            const container = document.querySelector(".calendar");
+            
+            // 2. Loading State
+            container.innerHTML = '<div style="padding:40px; color:#aaa;">Loading graph data...</div>';
+
+            try {
+                // 3. Fetch Raw GitHub HTML via AllOrigins Proxy
+                const ghUrl = `https://github.com/users/AnunayGoyal/contributions?from=${year}-01-01&to=${year}-12-31`;
+                const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(ghUrl)}`;
+
+                const response = await fetch(proxyUrl);
+                if (!response.ok) throw new Error('Network response was not ok');
+                
+                let html = await response.text();
+                
+                // 4. Cleanup via DOMParser (Robust removal of screen-reader text)
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                
+                // Remove "Skip to contributions" links/text
+                doc.querySelectorAll('.sr-only').forEach(el => el.remove());
+                doc.querySelectorAll('a, div, span').forEach(el => {
+                    if(el.textContent.trim().toLowerCase() === 'skip to contributions') el.remove();
+                });
+
+                // Remove "Year list" heading
+                doc.querySelectorAll('h2').forEach(el => {
+                    if(el.textContent.trim().toLowerCase() === 'year list') el.style.display = 'none';
+                });
+
+                // Inject the cleaned HTML (using body.innerHTML to get the nodes)
+                container.innerHTML = doc.body.innerHTML;
+
+                // 5. Force Full Width & Style Native Header
+                const table = container.querySelector('table');
+                if(table) {
+                    table.style.width = '100%';
+                    table.style.height = 'auto';
+                }
+                
+                // Style the native "X contributions in 20XX" header if found
+                const nativeHeader = container.querySelector('h2.f4');
+                if(nativeHeader) {
+                    nativeHeader.style.color = '#fff';
+                    nativeHeader.style.marginBottom = '15px';
+                }
+
+            } catch(e) {
+                console.error(e);
+                container.innerHTML = `
+                    <div style="color: #ff4444;">
+                        Failed to load graph.<br>
+                        <a href="https://github.com/AnunayGoyal" target="_blank" style="color:var(--accent); text-decoration:underline;">View on GitHub</a>
+                    </div>
+                `;
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            // Load current year by default
+            const currentYear = new Date().getFullYear();
+            const btn = document.querySelector(`.year-btn[onclick*="${currentYear}"]`) || document.querySelector('.year-btn');
+            if(btn) btn.classList.add('active');
+            
+            loadGraph(currentYear, null);
+        });
+    </script>
 
     <footer>
         <p class="footer-text">&copy; 2025 Anunay Goyal. Built with <span>Code & Caffeine</span>.</p>
